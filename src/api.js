@@ -2,7 +2,8 @@ import enrichment from './imi-enrichment-address/main'
 
 window.getLatLng = (str, callback, errorCallback = () => {}) => {
   try {
-    let code = enrichment(str)
+
+    let code = enrichment(str) //住所をenrichmentに渡して、都道府県・市区町村コードを取得
 
     const prefCode = code.substr(0, 2)
     const cityCode = code.substr(0, 5)

@@ -1,6 +1,7 @@
-import geojsonExtent from '@mapbox/geojson-extent'
+import geojsonExtent from '@mapbox/geojson-extent' // 与えられたpointから範囲（0,0,0,0）などを計算。
 
-require('viewport-units-buggyfill').init()
+require('viewport-units-buggyfill').init() // iOS Safari や Android Chromeで100vhを実現する。
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const map = new window.geolonia.Map('#map')
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#err a').href = url
   }
 
+  //検索関数
   const search = () => {
     if ('undefined' !== typeof map.getLayer('japanese-administration')) {
       map.removeLayer('japanese-administration')
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('err').style.visibility = 'hidden'
 
     if (document.getElementById('address').value) {
+
       window.getLatLng(document.getElementById('address').value, latlng => {
         // eslint-disable-next-line no-console
         console.log(latlng)
@@ -76,5 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  //検索ボタン
   document.getElementById('exec').addEventListener('click', search)
 })

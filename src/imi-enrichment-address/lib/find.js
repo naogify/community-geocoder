@@ -175,7 +175,18 @@ const find = address => {
   // 市区町村にヒットする場合
   for (let i = normalized.length; i >= 0; i--) {
     const head = normalized.substring(0, i)
+
+    console.log({head})
+    console.log({upper})
+
     const answer = upper[head]
+
+    console.log({answer})
+    console.log(typeof answer !== 'undefined')
+    // 高山村高井の場合、高山村が2つあるので multiple choice でErrorになる
+    // 大字って入ってた場合、それを削除して下がマッチするかみる
+    // multiple choiceの場合はその下を見ていく
+
     if (typeof answer !== 'undefined') {
       if (answer.length > 1) {
         return {
@@ -278,6 +289,7 @@ const find = address => {
       }
     }
   }
+
 
   // 市区町村にヒットしない場合
   for (let i = normalized.length; i >= 0; i--) {

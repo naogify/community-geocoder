@@ -44,6 +44,7 @@ const deepStrictEqual = function(expected, actual) {
   return expected === actual
 }
 
+// default export している
 const Util = {
   // ツリー作成・検索のための地名文字列の単純化
   simplify: replacer({
@@ -152,6 +153,9 @@ const Util = {
     if (a.match(/^[一二三四五六七八九千百十万億兆京]+$/)) return Util.j2h(a)
     return a
   },
+
+
+
   // 地名文字列を正規化して返す。丁目は半角数字にする。空白はトリム。OCR由来の誤字を修正。
   normalize: function(name) {
     if (name.endsWith('　')) return Util.normalize(name.replace(/[　]+$/, ''))
@@ -200,6 +204,8 @@ const Util = {
 
     return name
   },
+
+
   deepStrictEqual: deepStrictEqual,
   put: function(s, p, o) {
     if (typeof s[p] === 'undefined') {

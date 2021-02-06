@@ -3,7 +3,7 @@ import util from './lib/util'
 
 const enrichment = str => {
 
-  const normalized = util.normalize(str)
+  const normalized = util.normalize(str) //表記を統一
 
   const target = {
     '@context': 'https://imi.go.jp/ns/core/context.jsonld',
@@ -16,6 +16,8 @@ const enrichment = str => {
 
   const address = target['住所'] || target
   const response = find(address['表記'])
+
+  console.log(response)
 
   if (!response || response.multipleChoice) {
     throw new Error('見つかりませんでした。住所を修正して、もう一度お試しください。')
